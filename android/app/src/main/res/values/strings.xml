@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">YukCatat</string>
+    <color name="ic_launcher_background">#7c3aed</color>
 </resources>
