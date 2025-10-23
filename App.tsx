@@ -1,45 +1,59 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import "./global.css"
+import { useState } from "react";
+import { View, StatusBar } from "react-native";
+import Header from "./src/components/Header";
+import BottomNavigation from "./src/components/BottomNavigation";
+import HomeScreen from "./src/screens/HomeScreen";
+import TambahScreen from "./src/screens/TambahScreen";
+import LaporanScreen from "./src/screens/LaporanScreen";
+import SplashScreen from "./src/screens/SplashScreen";
+ 
+export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+  const [currentPage, setCurrentPage] = useState<'home' | 'tambah' | 'laporan'>('home');
+  const [selectedCategory, setSelectedCategory] = useState<'belanja' | 'hutang' | 'tugas' | null>(null);
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  const handleTambahPress = () => {
+    setCurrentPage('tambah');
+    setSelectedCategory(null);
+  };
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const handleStartApp = () => {
+    setShowSplash(false);
+  };
 
+  // Show Splash Screen
+  if (showSplash) {
+    return (
+      <View className="flex-1">
+        <StatusBar barStyle="light-content" />
+        <SplashScreen onStart={handleStartApp} />
+      </View>
+    );
+  }
+
+  // Main App
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
+    <View className="flex-1 bg-slate-950">
+      <StatusBar barStyle="light-content" />
+      
+      <Header currentPage={currentPage} />
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+      {currentPage === 'home' && <HomeScreen />}
+      {currentPage === 'tambah' && (
+        <TambahScreen 
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+          onBackPress={() => setSelectedCategory(null)}
+        />
+      )}
+      {currentPage === 'laporan' && <LaporanScreen />}
 
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
+      <BottomNavigation 
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        onTambahPress={handleTambahPress}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
