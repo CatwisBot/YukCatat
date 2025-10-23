@@ -3,7 +3,7 @@ import { BarChart3, ShoppingCart, Wallet, CheckSquare, ChevronRight, Check } fro
 
 export default function LaporanScreen() {
   return (
-    <ScrollView className="flex-1 px-6 pt-6">
+    <ScrollView className="flex-1 px-6 pt-6 mb-6">
       {/* Ringkasan Total */}
       <View className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-6 mb-6">
         <Text className="text-white text-sm mb-2">Total Pengeluaran Bulan Ini</Text>
