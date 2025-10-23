@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import { ClipboardList, ShoppingCart, Wallet, CheckSquare, Rocket, Heart } from "lucide-react-native";
+import { ClipboardList, ShoppingCart, Wallet, CheckSquare, ClipboardPen, Heart } from "lucide-react-native";
 
 interface SplashScreenProps {
   onStart: () => void;
@@ -55,8 +55,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
         onPress={onStart}
       >
         <View style={styles.buttonContent}>
-          <Text style={styles.startButtonText}>Mulai Sekarang</Text>
-          <Rocket color="#581c87" size={20} strokeWidth={2} />
+          <Text style={styles.startButtonText}>Catat Sekarang</Text>
+          <ClipboardPen color="#581c87" size={20} strokeWidth={2} />
         </View>
       </TouchableOpacity>
 
