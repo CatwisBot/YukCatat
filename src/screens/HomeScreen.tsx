@@ -3,7 +3,7 @@ import { ShoppingCart, Wallet, CheckSquare, TrendingUp, DollarSign, ListChecks, 
 
 export default function HomeScreen() {
   return (
-    <ScrollView className="flex-1 px-6 pt-6">
+    <ScrollView className="flex-1 px-6 pt-6 mb-6">
       {/* Card Belanja */}
       <TouchableOpacity 
         className="bg-slate-900 rounded-2xl p-6 mb-4 border-2 border-emerald-500/30"
